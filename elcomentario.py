@@ -1,17 +1,15 @@
+import git
 import re
 import subprocess
+from git import Repo
 
 def main():
     edited_lines()
 
 def edited_lines():
-    with open('C:\\Users\\restevez\\Documents\\oculus\\repo.jenkinstest\\checarcomentarios\\pruebacomentarios\\foo.txt') as source:
-            template = source.read()
-    if template is None:
-        print('Error. Template is empty')
-        sys.exit(1)
+    repo = Repo()
+    diff_lines= repo.git.diff()
     ans = ""
-    diff_lines = template.split("\n")
     found_first = False
     # adjust for added lines
     adjust = 0
@@ -27,6 +25,7 @@ def edited_lines():
     counts= 0
     sw = "sw/"
     fpga = "fpga/"
+    print(diff_lines)
     for line in diff_lines:
         if line.startswith('+++'):
             count = count + 1
@@ -34,12 +33,12 @@ def edited_lines():
             if fpga in line: 
                 if not line.endswith(".md"):
                     matrix= "Requires fpga build"                    
-                    print(line)
+                   
             if sw in line: 
                 if not line.endswith(".md"):
                     matrixs= "Requires sw build"
-                    print(line)
-            
+                    
+    print ("Estás son las lienas que se deben de editar" ,count)
                 
     if count >= 1:
         for lines in diff_lines:
