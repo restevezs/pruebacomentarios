@@ -8,7 +8,7 @@ def main():
 
 def edited_lines():
     repo = Repo()
-    d= repo.git.diff() 
+    d= repo.git.diff("b85c1a6") 
     diff_lines= d.split('\n')
     ans = ""
     found_first = False
