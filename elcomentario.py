@@ -37,9 +37,8 @@ def edited_lines():
             if sw in line: 
                 if not line.endswith(".md"):
                     matrixs= "Requires sw build"
-        print("*********",line)
                     
-    print ("Estás son las lienas que se deben de editar" ,count)
+   
                 
     
     for lines in diff_lines:
@@ -47,8 +46,7 @@ def edited_lines():
             numbs += 1
         if lines.startswith('-'):
             numbsf+= 1
-    print(numbsf)
-    print(numbs)
+ 
     numbs = numbs - count
     numbf = numbsf -count
     numbsmax = numbs + numbsf
@@ -66,8 +64,6 @@ def edited_lines():
     if count >= 50:
         ans = "Calamity"
     
-    print ("Number of files changed",count)
-    print ("Number of lines changed",numbsmax)
     print (ans)
     print (matrix)
     print (matrixs)
