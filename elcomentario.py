@@ -8,7 +8,8 @@ def main():
 
 def edited_lines():
     repo = Repo()
-    diff_lines= repo.git.diff()
+    d= repo.git.diff() 
+    diff_lines= d.split('\n')
     ans = ""
     found_first = False
     # adjust for added lines
@@ -24,8 +25,7 @@ def edited_lines():
     countf= 0
     counts= 0
     sw = "sw/"
-    fpga = "fpga/"
-    print(diff_lines)
+    fpga = "fpga/"    
     for line in diff_lines:
         if line.startswith('+++'):
             count = count + 1
@@ -37,20 +37,21 @@ def edited_lines():
             if sw in line: 
                 if not line.endswith(".md"):
                     matrixs= "Requires sw build"
+        print("*********",line)
                     
     print ("Estás son las lienas que se deben de editar" ,count)
                 
-    if count >= 1:
-        for lines in diff_lines:
-            if lines.startswith('+'):
-               numbs=+ 1
-            if lines.startswith('-'):
-               numbsf=+ 1
-        print(numbsf)
-        print(numbs)
-        numbs = numbs - count
-        numbf = numbsf - count
-        numbsmax = numbs + numbsf
+    
+    for lines in diff_lines:
+        if lines.startswith('+'):
+            numbs += 1
+        if lines.startswith('-'):
+            numbsf+= 1
+    print(numbsf)
+    print(numbs)
+    numbs = numbs - count
+    numbf = numbsf -count
+    numbsmax = numbs + numbsf
     if count <= 1:
         ans = "FIX"
     if (count >= 1 and count <= 5 and numbsmax > 5) :
