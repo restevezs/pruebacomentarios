@@ -1,14 +1,25 @@
+import os.path as path
+import argparse
 import git
 import re
 import subprocess
 from git import Repo
 
-def main():
-    edited_lines()
 
-def edited_lines():
+
+parser = argparse.ArgumentParser(description='a tool to obtain the git diff and use the information to get a label depending on the changed files')
+parser.add_argument('-bb','--branch_base',  type=str, default="",
+                    help='branch_base.')
+parser.add_argument('-ic','--id_commit', type=str,default="",
+                    help="Id of the commit")
+
+def main():
+    args = parser.parse_args()
+    edited_lines(args.branch_base, args.id_commit)
+
+def edited_lines(basebr,idcommit):
     repo = Repo()
-    d= repo.git.diff("b85c1a6") 
+    d= repo.git.diff("launo", "e33e3e1") 
     diff_lines= d.split('\n')
     ans = ""
     found_first = False
@@ -37,7 +48,7 @@ def edited_lines():
             if sw in line: 
                 if not line.endswith(".md"):
                     matrixs= "Requires sw build"
-                    
+        print (line)                   
    
                 
     
