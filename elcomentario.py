@@ -1,10 +1,18 @@
+# File       : diff_labels.py
+# Author     : Rafael Estevez
+# Company    : A2e technologies
+# Created    : 16/03/2021
+# -----------------------------------------------------------------------------
+# Description: a script that analyzes the te output of git-diff and returns based on a files.md_FPGA of labels the corresponding label  
+# -------------------------------------------------------------
+
 import os.path as path
 import argparse
 import git
 import re
 import subprocess
 from git import Repo
-
+import json
 
 
 parser = argparse.ArgumentParser(description='a tool to obtain the git diff and use the information to get a label depending on the changed files')
@@ -12,75 +20,80 @@ parser.add_argument('-bb','--branch_base',  type=str, default="",
                     help='branch_base.')
 parser.add_argument('-ic','--id_commit', type=str,default="",
                     help="Id of the commit")
+#The argument that will take from the pipeline will be the name of the base branch and the commit id 
 
 def main():
     args = parser.parse_args()
     edited_lines(args.branch_base, args.id_commit)
 
 def edited_lines(basebr,idcommit):
+    label_fromsjson = []
+    Openjson = open("labels.json", "r")
+    data_json= json.loads(Openjson.read())
+    for i in data_json['labels']: 
+       label_fromsjson.append(i)
     repo = Repo()
-    d= repo.git.diff("launo", "e33e3e1") 
+    d= repo.git.diff(basebr, idcommit) 
     diff_lines= d.split('\n')
-    ans = ""
     found_first = False
     # adjust for added lines
     adjust = 0
     # how many lines since the start
-    count = 0
-    numbsmax = 0
-    numbs = 0
-    numbsf = 0
-    matrix=""
-    matrixs=""
-    matrixf=""
-    countf= 0
-    counts= 0
+    count_of_lines_edited = 0
+    number_lines_edited_onSWmax = 0
+    number_lines_edited_onSW = 0
+    number_lines_edited_onFPGA = 0
+    count_of_lines_edited_on_fpga= 0
+    count_of_lines_edited_on_sw= 0
     sw = "sw/"
     fpga = "fpga/"    
     for line in diff_lines:
         if line.startswith('+++'):
-            count = count + 1
+            count_of_lines_edited = count_of_lines_edited + 1
             
             if fpga in line: 
                 if not line.endswith(".md"):
-                    matrix= "Requires fpga build"                    
+                     print(label_fromsjson[6].keys()) 
+                   
                    
             if sw in line: 
                 if not line.endswith(".md"):
-                    matrixs= "Requires sw build"
-        print (line)                   
-   
+                     print(label_fromsjson[7])
+                          
+    #this is an iteration of every line of the git diff and it will look for all the lines that start with a "+++" this would help to count the files edited 
                 
     
     for lines in diff_lines:
         if lines.startswith('+'):
-            numbs += 1
+            number_lines_edited_onSW += 1
         if lines.startswith('-'):
-            numbsf+= 1
+            number_lines_edited_onFPGA+= 1
+    #Here the for would help to count all the lines that were edited, and bellow the lines founded with +++ will rest, to count only the lines changed  
  
-    numbs = numbs - count
-    numbf = numbsf -count
-    numbsmax = numbs + numbsf
-    if count <= 1:
-        ans = "FIX"
-    if (count >= 1 and count <= 5 and numbsmax > 5) :
-        ans = "Tiny"
+    number_lines_edited_onSW = number_lines_edited_onSW - count_of_lines_edited
+    numbf = number_lines_edited_onFPGA -count_of_lines_edited
+    number_lines_edited_onSWmax = number_lines_edited_onSW + number_lines_edited_onFPGA
+    if count_of_lines_edited <= 1:
+        print(label_fromsjson[0])
+    if (count_of_lines_edited >= 1 and count_of_lines_edited <= 5 and number_lines_edited_onSWmax > 5) :
+        print(label_fromsjson[1])
         
-    if count >=5  and count < 30:
-        ans = "minor"
-    if count >= 30 and count < 50:
-        ans = "Feature"
-    if count >= 30 and count < 50:
-        ans = "Monster"
-    if count >= 50:
-        ans = "Calamity"
+    if count_of_lines_edited >=5  and count_of_lines_edited < 30:
+        print(label_fromsjson[2])
+    if count_of_lines_edited >= 30 and count_of_lines_edited < 50:
+        print(label_fromsjson[3])
+    if count_of_lines_edited >= 30 and count_of_lines_edited < 50:
+        print(label_fromsjson[4])
+    if count_of_lines_edited >= 50:
+        print(label_fromsjson[5])
     
-    print (ans)
-    print (matrix)
-    print (matrixs)
+    
+
+
 
 
 
 
 if __name__ == "__main__":
  main()
+

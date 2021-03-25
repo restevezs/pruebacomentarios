@@ -1,0 +1,47 @@
+{
+    "labels": [
+      {
+        "label": "Fix",
+        "linesChanged": 5,
+        "FilesChanged": 1,
+        "description": "a change in a single file and this change less than 5 lines"
+      },
+      {
+        "label": "Tiny",
+        "linesChanged": 5,
+        "FilesChanged": 1,
+        "description": "Puerta del Sol"
+      },
+      {
+        "label": "Minor",
+        "linesChanged": "5 or more",
+        "FilesChanged": "5-30",
+        "description": "Five or more files were edited, range between 5-30"
+      },
+    {
+        "label": "Feature",
+        "linesChanged": -3.703308,
+        "FilesChanged": "Madrid",
+        "description": "Puerta del Sol"
+      },
+	  {
+        "label": "Monster",
+        "linesChanged": -3.703308,
+        "FilesChanged": "Madrid",
+        "description": "Puerta del Sol"
+      },
+	  {
+        "label": "Calamity",
+        "linesChanged": -3.703308,
+        "FilesChanged": "Madrid",
+        "description": "Puerta del Sol"
+      }, 
+	  {
+        "Requires": "build Fpga"
+      },
+      {
+        "Requiere": "build SW"
+      }
+	  ]
+	
+}
