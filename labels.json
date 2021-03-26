@@ -15,26 +15,26 @@
       {
         "label": "Minor",
         "linesChanged": "5 or more lines were edited",
-        "FilesChanged": "1-5",
-        "description": "Five or more files were edited"
+        "FilesChanged": "2-30",
+        "description": "Two o more files were edited"
       },
     {
         "label": "Feature",
         "linesChanged": "5 or more on differents files",
-        "FilesChanged": "5-30",
-        "description": "Thirty or more files were edited"
+        "FilesChanged": "30-50",
+        "description": "Five or more files were edited"
       },
     {
         "label": "Monster",
         "linesChanged": "5 or more on differents files",
-        "FilesChanged": "30-50",
-        "description": "Fifty or more files were edited"
+        "FilesChanged": "50-200",
+        "description": "Thirty or more files were edited"
       },
     {
         "label": "Calamity",
         "linesChanged": "5 or more on differents files",
-        "FilesChanged": 50,
-        "description": "Two hundred or more files were edited"
+        "FilesChanged": 200,
+        "description": "Fifty  or more files were edited"
       }, 
     {
         "Requires": "Build Fpga"

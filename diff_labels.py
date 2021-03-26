@@ -47,8 +47,8 @@ def edited_lines(basebr,idcommit):
     count_of_files_edited_on_fpga= 0
     count_of_files_edited_on_sw= 0
     sw = "sw/"
-    fpga = "fpga/"    
-    print (d)
+    fpga = "fpga/" 
+    print(d)   
     for line in diff_lines:
         if line.startswith('+++'):
             count_of_files_edited = count_of_files_edited + 1
@@ -67,9 +67,9 @@ def edited_lines(basebr,idcommit):
     for lines in diff_lines:
         if lines.startswith('+'):
             number_lines_edited_onSW += 1
-        if lines.startswith('+---'):
+        if lines.startswith('---'):
             number_lines_edited_onFPGA+= 1
-            print("Si sirve de algo")
+            
     #Here the for would help to count all the lines that were edited, and bellow the lines founded with +++ will rest, to count only the lines changed  
  
     number_lines_edited_onSW = number_lines_edited_onSW - count_of_files_edited
