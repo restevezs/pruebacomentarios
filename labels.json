@@ -3,35 +3,59 @@
       {
         "label": "Fix",
         "linesChanged": "1-5",
+<<<<<<< HEAD
         "FilesChanged": 1,
+=======
+        "FilesChanged": "1",
+>>>>>>> f31e9e7cb66aa2d69e882a24c7bb278164dd6dd6
         "description": "A change in a single file, the change is less than 5 lines "
       },
       {
         "label": "Tiny",
+<<<<<<< HEAD
         "linesChanged": 5,
         "FilesChanged": 1,
+=======
+        "linesChanged": "5",
+        "FilesChanged": "1",
+>>>>>>> f31e9e7cb66aa2d69e882a24c7bb278164dd6dd6
         "description": "A change in a single file"
       },
       {
         "label": "Minor",
+<<<<<<< HEAD
         "linesChanged": "5 or more lines were edited",
+=======
+        "linesChanged": "5+",
+>>>>>>> f31e9e7cb66aa2d69e882a24c7bb278164dd6dd6
         "FilesChanged": "2-30",
         "description": "Two o more files were edited"
       },
     {
         "label": "Feature",
+<<<<<<< HEAD
         "linesChanged": "5 or more on differents files",
         "FilesChanged": "30-50",
+=======
+        "linesChanged": "5+",
+        "FilesChanged": "31-50",
+>>>>>>> f31e9e7cb66aa2d69e882a24c7bb278164dd6dd6
         "description": "Five or more files were edited"
       },
     {
         "label": "Monster",
+<<<<<<< HEAD
         "linesChanged": "5 or more on differents files",
         "FilesChanged": "50-200",
+=======
+        "linesChanged": "5+",
+        "FilesChanged": "51-200",
+>>>>>>> f31e9e7cb66aa2d69e882a24c7bb278164dd6dd6
         "description": "Thirty or more files were edited"
       },
     {
         "label": "Calamity",
+<<<<<<< HEAD
         "linesChanged": "5 or more on differents files",
         "FilesChanged": 200,
         "description": "Fifty  or more files were edited"
@@ -43,5 +67,11 @@
         "Requires": "Build SW"
       }
     ]
+=======
+        "linesChanged": "5+",
+        "FilesChanged": "200+",
+        "description": "Fifty  or more files were edited"
+      }]
+>>>>>>> f31e9e7cb66aa2d69e882a24c7bb278164dd6dd6
   
 }

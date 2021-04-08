@@ -1,1 +1,5 @@
 holis
+<<<<<<< HEAD
+=======
+lo edito
+>>>>>>> f31e9e7cb66aa2d69e882a24c7bb278164dd6dd6
