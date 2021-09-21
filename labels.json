@@ -1,0 +1,40 @@
+{
+     "labels": [
+      {
+        "label": "Fix",
+        "linesChanged": "1-5",
+        "FilesChanged": "1",
+        "description": "A change in a single file, the change is less than 5 lines "
+      },
+      {
+        "label": "Tiny",
+        "linesChanged": "5",
+        "FilesChanged": "1",
+        "description": "A change in a single file , the change is more than 5 lines"
+      },
+      {
+        "label": "Minor",
+        "linesChanged": "5+",
+        "FilesChanged": "2-30",
+        "description": "Two o more files were edited"
+      },
+    {
+        "label": "Feature",
+        "linesChanged": "5+",
+        "FilesChanged": "31-50",
+        "description": "Thirty or more files were edited"
+      },
+    {
+        "label": "Monster",
+        "linesChanged": "5+",
+        "FilesChanged": "51-200",
+        "description": "fifty or more files were edited"
+      },
+    {
+        "label": "Calamity",
+        "linesChanged": "5+",
+        "FilesChanged": "200+",
+        "description": "two hundred or more files were edited"
+      }]
+
+}
