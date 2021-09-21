@@ -1,0 +1,221 @@
+diff --git a/1.txt b/1.txt
+index 4224cce..78f6f0c 100644
+--- a/1.txt
++++ b/1.txt
+@@ -1 +1,21 @@
+-uno uno
+\ No newline at end of file
++uno uno
++1
++2
++3
++4
++5
++6
++7
++8
++9 espara checar
++10
++11
++12
++13
++14
++15
++16
++17
++18
++19
++20
+\ No newline at end of file
+diff --git a/comentario.py b/comentario.py
+index a4509b4..4d59196 100644
+--- a/comentario.py
++++ b/comentario.py
+@@ -1,63 +1,76 @@
+-'''import git
+-from unidiff import PatchSet
+-
+-from io import StringIO
+-
+-commit_sha1 = '7df6b0e71d8912a6aa4f9f249b7853ceabad3f0d'
+-commit_sha11 = '7df6b0e71d8912a6aa4f9f249b7853ceabad3f0d'
+-repo_directory_address = "path"
+-
+-repository = git.Repo()
+-commit = repository.commit(commit_sha1)
+-
+-uni_diff_text = repository.git.diff(commit_sha1+ '~1', commit_sha11,
+-                                    )
+-print(uni_diff_text)
+-'''
+ import re
+ import subprocess
+ 
+ def main():
+-    print(edited_lines())
++    edited_lines()
+ 
+ def edited_lines():
+-    ans = []
+     with open('C:\\Users\\restevez\\Documents\\oculus\\repo.jenkinstest\\checarcomentarios\\pruebacomentarios\\foo.txt') as source:
+             template = source.read()
+     if template is None:
+         print('Error. Template is empty')
+         sys.exit(1)
+-    print (template)
++    ans = ""
+     diff_lines = template.split("\n")
+     found_first = False
+     # adjust for added lines
+     adjust = 0
+     # how many lines since the start
+     count = 0
++    numbsmax = 0
++    numbs = 0
++    numbsf = 0
++    matrix=""
++    matrixs=""
++    matrixf=""
++    countf= 0
++    counts= 0
++    sw = "sw/"
++    fpga = "fpga/"
+     for line in diff_lines:
+-        print("estoes lo que hace el fot",line)
+-        
+-        count += 1
+-        if line.startswith('-'):
+-        # minus one because count is 1 when we're looking at the start line
+-            ans.append(count)
+-                
+-            continue
+-
+-        if line.startswith('+'):
+-            adjust += 1
+-            continue
+-
+-        # get the start line
+-        match = re.fullmatch(r'@@ \-(\d+),\d+ \+\d+,\d+ @@', line)
+-        if match:
+-            start = int(match.group(1))
+-            count = 0
+-            adjust = 0
++        if line.startswith('+++'):
++            count = count + 1
++            
++            if fpga in line: 
++                if not line.endswith(".md"):
++                    matrix= "Requires fpga build"                    
++                    print(line)
++            if sw in line: 
++                if not line.endswith(".md"):
++                    matrixs= "Requires sw build"
++                    print(line)
+             
++                
++    if count >= 1:
++        for lines in diff_lines:
++            if lines.startswith('+'):
++               numbs=+ 1
++            if lines.startswith('-'):
++               numbsf=+ 1
++        print(numbsf)
++        print(numbs)
++        numbs = numbs - count
++        numbf = numbsf - count
++        numbsmax = numbs + numbsf
++    if count <= 1:
++        ans = "FIX"
++    if (count >= 1 and count <= 5 and numbsmax > 5) :
++        ans = "Tiny"
++        
++    if count >=5  and count < 30:
++        ans = "minor"
++    if count >= 30 and count < 50:
++        ans = "Feature"
++    if count >= 30 and count < 50:
++        ans = "Monster"
++    if count >= 50:
++        ans = "Calamity"
++    
++    print ("Number of files changed",count)
++    print ("Number of lines changed",numbsmax)
+     print (ans)
+-    return ans
+-
++    print (matrix)
++    print (matrixs)
+ 
+ 
+ 
+diff --git a/dos/2.txt b/dos/2.txt
+index 951acf2..d31ce94 100644
+--- a/dos/2.txt
++++ b/dos/2.txt
+@@ -1,2 +1,3 @@
+ dos dos
+-dos
+\ No newline at end of file
++dos
++este es el comentario perron
+\ No newline at end of file
+diff --git a/foo.txt b/foo.txt
+index 3c93be9..e69de29 100644
+--- a/foo.txt
++++ b/foo.txt
+@@ -1,27 +0,0 @@
+-diff --git a/1.txt b/1.txt
+-deleted file mode 100644
+-index 4224cce..0000000
+---- a/1.txt
+-+++ /dev/null
+-@@ -1 +0,0 @@
+--uno uno
+-\ No newline at end of file
+-diff --git a/2.txt b/2.txt
+-deleted file mode 100644
+-index 951acf2..0000000
+---- a/2.txt
+-+++ /dev/null
+-@@ -1,2 +0,0 @@
+--dos dos
+--dos
+-\ No newline at end of file
+-diff --git a/3.txt b/3.txt
+-deleted file mode 100644
+-index fcc999b..0000000
+---- a/3.txt
+-+++ /dev/null
+-@@ -1,3 +0,0 @@
+--tres tres
+--tres
+--tres
+-\ No newline at end of file
+diff --git a/tres/3.txt b/tres/3.txt
+index fcc999b..4c28fae 100644
+--- a/tres/3.txt
++++ b/tres/3.txt
+@@ -1,3 +1,19 @@
+-tres tres
++tres tres y este otro cambio en la linea 1
+ tres
+-tres
+\ No newline at end of file
++tres y pues a ver que sale estoy en la linea 3
++este es el otro comentario perron pero de dos lineas
++este es el comentario perro pero la primera linea jajaja te congundi
++
++
++
++
++
++
++
++
++
++vamos viendo a ver que sale estoy en la linea 15
++y yo e4soty en la 16
++yo en la 17 
++yo en la 18
++yo en la 19
+\ No newline at end of file
